@@ -4,17 +4,18 @@ pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-error NotOwner();
+error NotOwner(address nftAddress);
 error PriceMustBeAboveZero();
 error NotApprovedForMarketplace();
-error AlreadyListed(address nftAddress, uint256 tokenId);
-error NotListed(address nftAddress, uint256 tokenId);
-error PriceNotMet(address nftAddress, uint256 tokenId, uint256 price);
+error AlreadyAddedForSale(address nftAddress, uint256 tokenId);
+error NotAddedForSale(address nftAddress, uint256 tokenId);
+error PriceNotMet();
 
-contract Marketplace is ReentrancyGuard {
+contract AuctionMarketplace is ReentrancyGuard {
   struct ItemForSell {
     uint256 price;
     address seller;
+    uint256 tokenId;
   }
 
   event ItemAddToSell(
@@ -48,21 +49,21 @@ contract Marketplace is ReentrancyGuard {
     IERC721 nft = IERC721(nftAddress);
     address owner = nft.ownerOf(tokenId);
     if (sender != owner) {
-      revert NotOwner();
+      revert NotOwner(nftAddress);
     }
     _;
   }
 
   modifier notForSell(address nftAddress, uint256 tokenId) {
     if (items[nftAddress][tokenId].price > 0) {
-      revert AlreadyListed(nftAddress, tokenId);
+      revert AlreadyAddedForSale(nftAddress, tokenId);
     }
     _;
   }
 
   modifier isForSell(address nftAddress, uint256 tokenId) {
     if (items[nftAddress][tokenId].price <= 0) {
-      revert NotListed(nftAddress, tokenId);
+      revert NotAddedForSale(nftAddress, tokenId);
     }
     _;
   }
@@ -75,11 +76,7 @@ contract Marketplace is ReentrancyGuard {
     if (price <= 0) {
       revert PriceMustBeAboveZero();
     }
-    IERC721 nft = IERC721(nftAddress);
-    if (nft.getApproved(tokenId) != address(this)) {
-      revert NotApprovedForMarketplace();
-    }
-    items[nftAddress][tokenId] = ItemForSell(price, msg.sender);
+    items[nftAddress][tokenId] = ItemForSell(price, msg.sender, tokenId);
     emit ItemAddToSell(msg.sender, nftAddress, tokenId, price);
   }
 
@@ -100,11 +97,23 @@ contract Marketplace is ReentrancyGuard {
   {
     ItemForSell memory item = items[nftAddress][tokenId];
     if (item.price > msg.value) {
-      revert PriceNotMet(nftAddress, tokenId, item.price);
+      revert PriceNotMet();
     }
     proceeds[item.seller] += msg.value;
-    delete (items[nftAddress][tokenId]);
     IERC721(nftAddress).safeTransferFrom(item.seller, msg.sender, tokenId);
+    delete (items[nftAddress][tokenId]);
     emit ItemBought(msg.sender, nftAddress, tokenId, item.price);
+  }
+
+  function getItems(address nftAddress, uint256 tokenId)
+    external
+    view
+    returns (ItemForSell memory)
+  {
+    return items[nftAddress][tokenId];
+  }
+
+  function getProceeds(address seller) external view returns (uint256) {
+    return proceeds[seller];
   }
 }
