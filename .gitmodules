@@ -1,0 +1,3 @@
+[submodule "english_contracts/graph"]
+	path = english_contracts/graph
+	url = /mnt/c/Users/k.chernyshenko/workspace/solidity_test_task/auction/english_contracts/graph
