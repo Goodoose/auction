@@ -1,0 +1,10 @@
+{
+  "goerli": {
+    "Nft": {
+      "address": "0x1D3021F4c178fAB923cF563dcC24c45d026B570C"
+    },
+    "NftSale": {
+      "address": "0x1D3021F4c178fAB923cF563dcC24c45d026B570C"
+    }
+  }
+}
