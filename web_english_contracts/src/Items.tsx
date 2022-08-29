@@ -25,7 +25,7 @@ type NftSale = {
 export default function Items() {
   const [nfts, setNfts] = useState<Nft[]>([]);
   const [nftSales, setNftSales] = useState<NftSale[]>([]);
-  const { nftContract, marketplace } = useContext(ContractContext);
+  const { nftContract, marketplace, signer } = useContext(ContractContext);
 
   const { isLoading, runAsyncAction } = useAsyncAction();
   const { metaState } = useMetamask();
@@ -64,18 +64,14 @@ export default function Items() {
 
   const handleItemRemoveFromSell = (tokenId: string) => {
     runAsyncAction(async () => {
-      await marketplace
-        // .connect(metaState.account[0])
-        .removeItemFromSell(nftContract.address, tokenId);
+      await marketplace.connect(signer).removeItemFromSell(nftContract.address, tokenId);
     });
   };
 
   const handleItemAddToSell = (tokenId: string) => {
     runAsyncAction(
       async () => {
-        await nftContract
-          // .connect(metaState.account[0])
-          .approve(marketplace.address, tokenId);
+        await nftContract.connect(signer).approve(marketplace.address, tokenId);
       },
       undefined,
       true
@@ -83,7 +79,7 @@ export default function Items() {
     runAsyncAction(
       async () => {
         await marketplace
-          // .connect(metaState.account[0])
+          .connect(signer)
           .addItemForSell(nftContract.address, tokenId, ethers.utils.parseEther("0.0001"));
       },
       undefined,

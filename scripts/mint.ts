@@ -32,7 +32,6 @@ async function mintAndList() {
     );
     const addTxResult = await addTx.wait(1);
     if (addTxResult.events && addTxResult.events[0].args) {
-      console.log(addTxResult.events);
       console.log(`added tokenId ${addTxResult.events[0].args.tokenId.toString()}  to sale`);
     }
   }

@@ -10,9 +10,9 @@ export function handleItemAddToSell(event: ItemAddToSell): void {
 
   const tokenSale = new nftSale(eventParams.tokenId.toString());
 
-  tokenSale.id = eventParams.nftAddress.toHexString();
-  tokenSale.price = eventParams.price;
   tokenSale.token = eventParams.tokenId.toString();
+  tokenSale.price = eventParams.price;
+  tokenSale.contract = eventParams.nftAddress.toHexString();
 
   tokenSale.save();
 }
