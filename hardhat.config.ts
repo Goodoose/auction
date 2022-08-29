@@ -14,7 +14,7 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "";
 const GOERLI_API_URL = process.env.GOERLI_API_URL || "";
 
 const config: HardhatUserConfig = {
-  defaultNetwork: "hardhat",
+  defaultNetwork: "goerli",
   networks: {
     hardhat: {
       chainId: 31337,

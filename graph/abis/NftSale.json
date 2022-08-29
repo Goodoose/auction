@@ -1,29 +1,57 @@
 [
   {
     "inputs": [
-      { "internalType": "address", "name": "nftAddress", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "AlreadyAddedForSale",
     "type": "error"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "nftAddress", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "NotAddedForSale",
     "type": "error"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "nftAddress", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      }
     ],
     "name": "NotOwner",
     "type": "error"
   },
-  { "inputs": [], "name": "PriceMustBeAboveZero", "type": "error" },
-  { "inputs": [], "name": "PriceNotMet", "type": "error" },
+  {
+    "inputs": [],
+    "name": "PriceMustBeAboveZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "PriceNotMet",
+    "type": "error"
+  },
   {
     "anonymous": false,
     "inputs": [
@@ -113,9 +141,21 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "nftAddress", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-      { "internalType": "uint256", "name": "price", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      }
     ],
     "name": "addItemForSell",
     "outputs": [],
@@ -124,8 +164,16 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "nftAddress", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "buyItem",
     "outputs": [],
@@ -134,16 +182,36 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "nftAddress", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "getItems",
     "outputs": [
       {
         "components": [
-          { "internalType": "uint256", "name": "price", "type": "uint256" },
-          { "internalType": "address", "name": "seller", "type": "address" },
-          { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "seller",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          }
         ],
         "internalType": "struct AuctionMarketplace.ItemForSell",
         "name": "",
@@ -155,17 +223,35 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "seller", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      }
     ],
     "name": "getProceeds",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "nftAddress", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "removeItemFromSell",
     "outputs": [],

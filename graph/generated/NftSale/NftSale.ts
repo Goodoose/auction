@@ -96,7 +96,7 @@ export class ItemRemoveFromSell__Params {
   }
 }
 
-export class NftSale__getItemsResultValue0Struct extends ethereum.Tuple {
+export class nftSale__getItemsResultValue0Struct extends ethereum.Tuple {
   get price(): BigInt {
     return this[0].toBigInt();
   }
@@ -110,15 +110,15 @@ export class NftSale__getItemsResultValue0Struct extends ethereum.Tuple {
   }
 }
 
-export class NftSale extends ethereum.SmartContract {
-  static bind(address: Address): NftSale {
-    return new NftSale("NftSale", address);
+export class nftSale extends ethereum.SmartContract {
+  static bind(address: Address): nftSale {
+    return new nftSale("nftSale", address);
   }
 
   getItems(
     nftAddress: Address,
     tokenId: BigInt
-  ): NftSale__getItemsResultValue0Struct {
+  ): nftSale__getItemsResultValue0Struct {
     let result = super.call(
       "getItems",
       "getItems(address,uint256):((uint256,address,uint256))",
@@ -128,13 +128,13 @@ export class NftSale extends ethereum.SmartContract {
       ]
     );
 
-    return changetype<NftSale__getItemsResultValue0Struct>(result[0].toTuple());
+    return changetype<nftSale__getItemsResultValue0Struct>(result[0].toTuple());
   }
 
   try_getItems(
     nftAddress: Address,
     tokenId: BigInt
-  ): ethereum.CallResult<NftSale__getItemsResultValue0Struct> {
+  ): ethereum.CallResult<nftSale__getItemsResultValue0Struct> {
     let result = super.tryCall(
       "getItems",
       "getItems(address,uint256):((uint256,address,uint256))",
@@ -148,7 +148,7 @@ export class NftSale extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<NftSale__getItemsResultValue0Struct>(value[0].toTuple())
+      changetype<nftSale__getItemsResultValue0Struct>(value[0].toTuple())
     );
   }
 

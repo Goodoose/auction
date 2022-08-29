@@ -4,15 +4,17 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ graph",
-    "create-local": "graph create --node http://localhost:8020/ graph",
-    "remove-local": "graph remove --node http://localhost:8020/ graph",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 graph",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ Goodoose/english_auction",
+    "create-local": "graph create --node http://localhost:8020/ Goodoose/english_auction",
+    "remove-local": "graph remove --node http://localhost:8020/ Goodoose/english_auction",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 Goodoose/english_auction",
     "test": "graph test"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.33.0",
     "@graphprotocol/graph-ts": "0.27.0"
   },
-  "devDependencies": { "matchstick-as": "0.5.0" }
+  "devDependencies": {
+    "matchstick-as": "0.5.0"
+  }
 }

@@ -1,0 +1,9 @@
+.header {
+    flex-direction: row;
+    margin: 25px;
+}
+
+.link {
+    flex-direction: row;
+    margin: 25px;
+}

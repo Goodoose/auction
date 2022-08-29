@@ -1,4 +1,3 @@
-import "@nomiclabs/hardhat-ethers";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
@@ -17,7 +16,7 @@ describe("Nft contract tests", function () {
     deployer = accounts[0];
     user = accounts[1];
     const nftContractFactory = await ethers.getContractFactory("AuctionNftContract");
-    nftContract = (await nftContractFactory.deploy()) as AuctionNftContract;
+    nftContract = await nftContractFactory.deploy();
   });
 
   describe("mintNft()", function () {
